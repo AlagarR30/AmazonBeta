@@ -1,4 +1,5 @@
-public package AmazonBeta;
+package AmazonBeta;
+
 import java.util.*;
 class Admin {
     //Instance variables
@@ -22,7 +23,7 @@ class Admin {
     public void displayRequest(){
         // used to display all the request by sellers for admin to approve one
         for(Seller s: requests.keySet()){
-            System.out.println("SELLER : "+s.name);
+            System.out.println("SELLER : "+s.sellerName);
             List<Product> temp = requests.get(s);
             for(int i=0;i<temp.size();i++){
                 System.out.println((i+1)+".\tPRODUCT : "+temp.get(i).name+"\tPRICE : "+temp.get(i).price+"\tQUANTITY : "+temp.get(i).quantity);
@@ -59,7 +60,7 @@ class Admin {
     public void displayInventory(){
         for(Seller s : inventory.keySet()){
             List<Product> temp = inventory.get(s);
-            System.out.println("SELLER : "+s);
+            System.out.println("SELLER : "+s.sellerName);
             int index = 1;
             for(Product p:temp){
                 System.out.println(index+".\tPRODUCT : "+p.name+"\tPRICE : "+p.price);
@@ -89,6 +90,6 @@ class Admin {
     public void removeSeller(Seller s){
         requests.remove(s);
         inventory.remove(s);
-        System.out.println("SELLER REMOVED SUCCESSFULLY !\n");
+        System.out.println("SELLER "+s.sellerName+" REMOVED SUCCESSFULLY !\n");
     }
 }
