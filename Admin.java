@@ -52,7 +52,7 @@ class Admin {
             requests.remove(s);
         }
 
-        s.products.add(p);
+        s.products.put(p.name, p);
         System.out.println("INVENTORY ADDED SUCCESSFULLY !\n");
     }
     
@@ -75,7 +75,7 @@ class Admin {
             Product p = temp.get(product_index-1);
             temp.remove(p);
             inventory.put(s, temp);
-            s.products.remove(p);
+            s.products.remove(p.name);
             if(temp.size()==0){
                 inventory.remove(s);
             }
