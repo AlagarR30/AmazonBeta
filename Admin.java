@@ -8,15 +8,15 @@ class Admin {
     
     public void request(Seller s, Product p){
         // used to place request to the admin (to add it into inventory) by seller....
-        List<Product> seller_products;
+        List<Product> temp;
         if(requests.containsKey(s)){
-            seller_products=requests.get(s); 
+            temp=requests.get(s); 
         }
         else{
-            seller_products=new ArrayList<>();
+            temp=new ArrayList<>();
         }
-        seller_products.add(p);
-        requests.put(s, seller_products);
+        temp.add(p);
+        requests.put(s, temp);
         System.out.println("REQUEST PLACED SUCCESSFULLY !\n");
     }
 
@@ -25,10 +25,10 @@ class Admin {
         for(Seller s: requests.keySet()){
             System.out.println("SELLER : "+s.sellerName);
             List<Product> temp = requests.get(s);
-            for(int i=0;i<temp.size();i++){
-                System.out.println((i+1)+".\tPRODUCT : "+temp.get(i).name+"\tPRICE : "+temp.get(i).price+"\tQUANTITY : "+temp.get(i).quantity);
+            int index = 1;
+            for(Product p:temp){
+                System.out.println(index+".\tPRODUCT : "+p.product_name+"\tPRICE : "+p.price+"\tQUANTITY : "+p.quantity);
             }
-            System.out.println();
         }
         System.out.println();
     }
@@ -53,7 +53,7 @@ class Admin {
             requests.remove(s);
         }
 
-        s.products.put(p.name, p);
+        s.products.put(p.product_name, p);
         System.out.println("INVENTORY ADDED SUCCESSFULLY !\n");
     }
     
@@ -63,7 +63,7 @@ class Admin {
             System.out.println("SELLER : "+s.sellerName);
             int index = 1;
             for(Product p:temp){
-                System.out.println(index+".\tPRODUCT : "+p.name+"\tPRICE : "+p.price);
+                System.out.println(index+".\tPRODUCT : "+p.product_name+"\tPRICE : "+p.price);
                 index++;
             }
         }
@@ -76,11 +76,11 @@ class Admin {
             Product p = temp.get(product_index-1);
             temp.remove(p);
             inventory.put(s, temp);
-            s.products.remove(p.name);
+            s.products.remove(p.product_name);
             if(temp.size()==0){
                 inventory.remove(s);
             }
-            System.out.println("PRODUCT : "+p.name+" IS REMOVED SUCCESSFULLY !\n");
+            System.out.println("PRODUCT : "+p.product_name+" IS REMOVED SUCCESSFULLY !\n");
         }
         else{
             System.out.println("SELLER DOESN'T EXIST !\n");
