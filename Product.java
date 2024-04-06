@@ -10,6 +10,7 @@ public class Product {
 		this.price=price;
 		this.quantity=quantity;
 	}
+	//I have made this changes from eclipse idle
 	
 
 	}
