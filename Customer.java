@@ -1,4 +1,4 @@
-package amazonBeta.AmazonBeta;
+package AmazonBeta;
 
 import java.util.*;
 
