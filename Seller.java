@@ -1,8 +1,12 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 class Seller{
     String sellerName;
     HashMap<String,Product> products=new HashMap<>();
+    List<String> transactionHistory=new ArrayList<>();
+
     Seller(String sellerName){
         this.sellerName=sellerName;
     }
@@ -10,6 +14,7 @@ class Seller{
     public void addProduct(String productName,int price,int quantity){
         Admin a=new Admin();
         a.request(this,new Product(productName,price,quantity));
+        
     }
 
     public void getProductByName(String productName){
@@ -23,13 +28,20 @@ class Seller{
         }
     }
 
-    public void displayProducts(){
-        for(String pName:products.getKey()){
-            getProductByName(pName);
-            System.out.println();
-        }
+    public HashMap<String,Product> getProducts(){
+        return products;
     }
 
+    public void addTransaction(String customerName,Product p,int quantity){
+        transactionHistory.add(customerName+" "+p.product_name+" "+p.price+" "+quantity);
+    }
 
+    public void displayHistory(){
+        int cnt=0;
+        for(String s:transactionHistory){
+            System.out.println(++cnt+" "+s);
+        }
+    }
+    
 
 }
