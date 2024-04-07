@@ -4,8 +4,8 @@ import java.util.*;
 class Admin {
     //Instance variables
     public HashMap<Seller, List<Product>> inventory = new HashMap<>(); // used to remove a individual invventory or seller
-    public HashMap<Seller, List<Product>> requests=new HashMap<>(); // used to approve requests!
-    
+    public HashMap<Seller, List<Product>> requests= new HashMap<>(); // used to approve requests!
+    public HashMap<String, Seller> sellers = new HashMap<>();
     public void request(Seller s, Product p){
         // used to place request to the admin (to add it into inventory) by seller....
         List<Product> temp;
@@ -18,6 +18,16 @@ class Admin {
         temp.add(p);
         requests.put(s, temp);
         System.out.println("REQUEST PLACED SUCCESSFULLY !\n");
+    }
+
+    public Product searchProductRequest(Seller s, String productName){
+        List<Product> temp = requests.get(s);
+        for(Product iter:temp){
+            if(iter.product_name.equals(productName)){
+                return iter;
+            }
+        }
+        return null;
     }
 
     public void displayRequest(){
@@ -33,9 +43,12 @@ class Admin {
         System.out.println();
     }
 
-    public void addInventory(Seller s, int product_index){
+    
+    public void addInventory(String sellerName, String productName){
+
         // used to add the approved products to inventory
-        Product p= requests.get(s).get(product_index-1);
+        Seller s = sellers.get(SellerName);
+        Product p= searchProductRequest(s, productName);
 
         List<Product> temp;
         if(inventory.containsKey(s)){
