@@ -47,7 +47,7 @@ class Admin {
     public void addInventory(String sellerName, String productName){
 
         // used to add the approved products to inventory
-        Seller s = sellers.get(SellerName);
+        Seller s = sellers.get(sellerName);
         Product p= searchProductRequest(s, productName);
 
         List<Product> temp;
