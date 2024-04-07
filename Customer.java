@@ -16,17 +16,39 @@ public Customer(String name ){
 		
 	}
     
-    public void removeFromCart(Product product) {
-    	this.cart.remove(product);
-    	System.out.println(product+" IS REMOVED FROM YOUR CART");
-		
-	}
+    public void removeFromCart(String productName) {
+        if (this.cart.isEmpty()) {
+            System.out.println("CANNOT REMOVE ITEMS FROM AN EMPTY CART");
+            return;
+        }
+    
+        for (Product product : this.cart) {
+            if (product.product_name.equals(productName)) {
+                cart.remove(product);
+                System.out.println(productName + " IS REMOVED FROM YOUR CART");
+                return;
+            }
+        }
+        System.out.println(productName + " IS NOT FOUND IN YOUR CART");
+        
+    }
+    
     
     public void viewCart() {
+        int total=0;
         System.out.println("YOUR CART");
-        this.cart.forEach(product -> System.out.println("PRODUCT NAME : " + product.product_name +
+        this.cart.forEach(product -> {System.out.println("PRODUCT NAME : " + product.product_name +
                                                          "\nPRICE : " + product.price +
-                                                         "\nQUANTITY : " + product.quantity));
+                                                         "\nQUANTITY : " + product.quantity);
+                                                         total+=product.price;
+                                                        });
+                                                        System.out.println("YOU HAVE "+cart.size()+" ITEMS IN YOUR CART\nTOTAL : "+total+" \u20A8");                                                 
+    }
+
+    public void getCartPrice(){
+        int total=0;
+        this.cart.forEach(product->total+=product.price);
+        System.out.println("YOU HAVE "+cart.size()+" ITEMS IN YOUR CART\nTOTAL : "+total+" \u20A8");
     }
 
     public void clearCart() {
