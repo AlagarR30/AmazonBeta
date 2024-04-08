@@ -16,7 +16,7 @@ public class AmazonBeta {
                 if(adminObj.passCheck(pass)){
                     boolean adminFlag = true;
                     while (adminFlag){
-                        System.out.println("\n1.PENDING REQUESTS \n2.APPROVE REQUEST \n3.VIEW INVENTORY \n4.REMOVE SELLER \n5.REMOVE PRODUCT");
+                        System.out.println("\n1.PENDING REQUESTS \n2.APPROVE REQUEST \n3.APPROVE SELLER \n4.VIEW INVENTORY \n5.REMOVE SELLER \n6.REMOVE PRODUCT");
                         int adminChoosen = sc.nextInt();
                         sc.nextLine();
                         if(adminChoosen == 1){
@@ -39,10 +39,19 @@ public class AmazonBeta {
                             }
                             else System.out.println("SELLER NOT FOUND FOR APPROVAL!");
                         }
-                        else if(adminChoosen == 3){
+                        else if(adminChoosen==3){
+                            System.out.println("ENTER SELLERNAME: ");
+                            String sname = sc.nextLine();
+                            Seller seller = adminObj.findSeller(sname,false);
+                            if(seller != null){
+                                adminObj.approveSeller(seller);
+                            }
+                            else System.out.println("SELLER NOT FOUND!");
+                        }
+                        else if(adminChoosen == 4){
                             adminObj.displayInventory();
                         }
-                        else if(adminChoosen==4){
+                        else if(adminChoosen==5){
                             System.out.println("ENTER SELLERNAME: ");
                             String sname = sc.nextLine();
                             Seller seller = adminObj.findSeller(sname,false);
@@ -51,7 +60,7 @@ public class AmazonBeta {
                             }
                             else System.out.println("SELLER NOT FOUND!");
                         }
-                        else if(adminChoosen == 5){
+                        else if(adminChoosen == 6){
                             System.out.println("ENTER SELLER NAME: ");
                             String sname = sc.nextLine();
                             System.out.println("ENTER PRODUCT ID: ");
@@ -127,7 +136,7 @@ public class AmazonBeta {
                     sc.nextLine();
                     if(cusChoosen ==1){
                         adminObj.displayInventory();
-                        System.out.println("PRESS 0 -> SHOP \n1 -> EXIT");
+                        System.out.println("PRESS 0 TO SHOP \nPRESS 1 -> EXIT");
                         int n= sc.nextInt();
                         sc.nextLine();
                         while(n==0){
