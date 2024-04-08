@@ -5,6 +5,7 @@ class Admin {
     public HashMap<Seller, List<Product>> requests=new HashMap<>(); // used to approve requests!
     public HashMap<String, Customer>customers=new HashMap<>(); 
     public HashMap<String, Seller>sellers=new HashMap<>(); 
+    public HashMap<String, Product>products=new HashMap<>(); 
 
     String adminPass = "amazon321";
     public boolean passCheck(String s){
@@ -21,6 +22,7 @@ class Admin {
         }
         temp.add(p);
         requests.put(s, temp);
+        products.put(p.product_name,p);
         System.out.println("REQUEST PLACED SUCCESSFULLY !\n");
     }
 
@@ -48,7 +50,7 @@ class Admin {
             else System.out.println("YOU HAVE NO APPROVED PRODUCTS!");
     }
     public void approveSeller(Seller s){
-        List<Product> temp = requests.get(s);
+        List<Product> temp = new ArrayList<>(requests.get(s));
         for(Product p:temp){
             addInventory(s,p);
         }

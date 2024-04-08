@@ -136,21 +136,21 @@ public class AmazonBeta {
                     sc.nextLine();
                     if(cusChoosen ==1){
                         adminObj.displayInventory();
-                        System.out.println("PRESS 0 TO SHOP \nPRESS 1 -> EXIT");
+                        System.out.println("PRESS 0 TO SHOP \nPRESS 1 TO EXIT");
                         int n= sc.nextInt();
                         sc.nextLine();
                         while(n==0){
-                            System.out.println("ENTER SELLER NAME OF THE PRODUCT: ");
-                            String s = sc.nextLine();
+                            // System.out.println("ENTER SELLER NAME OF THE PRODUCT: ");
+                            // String s = sc.nextLine();
                             System.out.println("ENTER PRODUCT NAME: ");
                             String prd = sc.nextLine();
-                            Product p = adminObj.prdFinder(adminObj.sellers.get(s),prd,false);
+                            Product p = adminObj.products.getOrDefault(prd, null);
                             if(p!=null){
                                 thisCus.addToCart(p);
                             }
                             else System.out.println("THE PRODUCT THAT YOU HAVE ENTERED IS INCORRECT!");
                             
-                            System.out.println("PRESS 0 -> SHOP \n1 -> EXIT");
+                            System.out.println("PRESS 0 TO SHOP \nPRESS 1 TO EXIT");
                             n= sc.nextInt();
                             sc.nextLine();
                         }
