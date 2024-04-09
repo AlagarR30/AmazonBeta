@@ -41,7 +41,7 @@ class Admin {
     public void displayRequest(Seller s){
             if(inventory.containsKey(s)){
                 System.out.println("SELLER : "+s.sellerName);
-            List<Product> temp = requests.get(s);
+            List<Product> temp = inventory.get(s);
             int index = 0;
             for(Product p:temp){
                 System.out.println(++index+".\tPRODUCT : "+p.product_name+"\tPRICE : "+p.price+"\tQUANTITY : "+p.quantity);

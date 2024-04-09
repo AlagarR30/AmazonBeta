@@ -140,8 +140,6 @@ public class AmazonBeta {
                         int n= sc.nextInt();
                         sc.nextLine();
                         while(n==0){
-                            // System.out.println("ENTER SELLER NAME OF THE PRODUCT: ");
-                            // String s = sc.nextLine();
                             System.out.println("ENTER PRODUCT NAME: ");
                             String prd = sc.nextLine();
                             Product p = adminObj.products.getOrDefault(prd, null);
